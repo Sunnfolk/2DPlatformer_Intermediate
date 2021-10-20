@@ -13,14 +13,15 @@ namespace Scripts_2D_Platformer.Player
 
         private void OnSave()
         {
-            PlayerPrefs.SetFloat("transform.pos.x", transform.position.x);
-            PlayerPrefs.SetFloat("transform.pos.y", transform.position.y);
+            var position = transform.position;
+            PlayerPrefs.SetFloat("PlayerPosX", position.x);
+            PlayerPrefs.SetFloat("PlayerPosY", position.y);
         }
 
         private void OnLoad()
         {
-            var posX = PlayerPrefs.GetFloat("transform.pos.x");
-            var posY = PlayerPrefs.GetFloat("transform.pos.y");
+            var posX = PlayerPrefs.GetFloat("PlayerPosX");
+            var posY = PlayerPrefs.GetFloat("PlayerPosY");
             transform.position = new Vector2(posX, posY);
         }
 
