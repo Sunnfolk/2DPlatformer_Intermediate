@@ -9,13 +9,13 @@ namespace Scripts_2D_Platformer.Player
         [SerializeField] private float jumpSpeed = 10f;
         
         /*JUMPING*/
-        public bool m_IsJumping = false;
-        public float m_JumpTimeCounter;
-        private readonly float m_JumpTime = .35f;
+        private bool m_IsJumping = false;
+        private float m_JumpTimeCounter;
+        public float m_JumpTime = .4f;
         
-        public void Move(Rigidbody2D _rigidbody2D, Vector2 _input)
+        public void Move(Rigidbody2D rigidbody2D, Vector2 input)
         {
-            _rigidbody2D.velocity = new Vector2(_input.x * moveSpeed, _rigidbody2D.velocity.y);
+            rigidbody2D.velocity = new Vector2(input.x * moveSpeed, rigidbody2D.velocity.y);
         }
 
         public void Jump(bool isGrounded, Rigidbody2D rigidbody2D, bool jumpInput)
