@@ -63,14 +63,14 @@ namespace Scripts_2D_Platformer.Player
             if (state is States.Start or States.Pause or States.CutScene) return;
             _move.Move(_rigidBody2D, _Input.MoveAxis);
         }
-        
-        public void GroundEvents()
+
+        private void GroundEvents()
         {
             _move.Jump(_Collisions.isGrounded, _rigidBody2D, _Input.Jump);
             _Animations.GroundAnimations();
         }
 
-        public void AirEvents()
+        private void AirEvents()
         {
             _move.LongJump(_Input.Jumping, _rigidBody2D);
             _Animations.AirAnimations();

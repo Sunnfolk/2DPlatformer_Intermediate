@@ -1,3 +1,4 @@
+using Scripts_2D_Platformer.Systems;
 using UnityEngine;
 
 namespace Scripts_2D_Platformer.Player
@@ -19,6 +20,11 @@ namespace Scripts_2D_Platformer.Player
             var hit = Physics2D.Raycast(position, direction, distance, _whatIsGround);
         
             return hit.collider != null;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            
         }
     }
 }

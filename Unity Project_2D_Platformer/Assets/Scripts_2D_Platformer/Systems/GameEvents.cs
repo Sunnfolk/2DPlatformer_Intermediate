@@ -5,10 +5,10 @@ namespace Scripts_2D_Platformer.Systems
 {
     public class GameEvents : MonoBehaviour
     {
-        public static GameEvents current;
+        public static GameEvents Current;
         private void Awake()
         {
-            current = this;
+            Current = this;
         }
 
         public event Action ONSavePointCollisionEnter;

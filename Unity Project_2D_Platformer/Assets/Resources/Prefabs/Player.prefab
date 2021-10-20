@@ -119,6 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpSpeed: 10
+  m_IsJumping: 0
+  m_JumpTimeCounter: 0
 --- !u!114 &1198854592
 MonoBehaviour:
   m_ObjectHideFlags: 0

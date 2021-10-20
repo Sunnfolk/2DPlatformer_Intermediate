@@ -25,6 +25,8 @@ namespace Scripts_2D_Platformer.Player
             _moveAxis = _playerInput.Player.Move.ReadValue<Vector2>();
             _jumping = _playerInput.Player.Jump.ReadValue<float>();
             _jump = _playerInput.Player.Jump.triggered;
+            
+            print("Jumping: " + _jumping);
         }
 
 

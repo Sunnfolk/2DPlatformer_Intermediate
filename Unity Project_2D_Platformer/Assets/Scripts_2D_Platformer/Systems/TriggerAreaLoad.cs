@@ -1,10 +1,12 @@
-using Scripts_2D_Platformer.Systems;
 using UnityEngine;
 
-public class TriggerAreaLoad : MonoBehaviour
+namespace Scripts_2D_Platformer.Systems
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public class TriggerAreaLoad : MonoBehaviour
     {
-        GameEvents.current.SavePointLoad();
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            GameEvents.Current.SavePointLoad();
+        }
     }
 }

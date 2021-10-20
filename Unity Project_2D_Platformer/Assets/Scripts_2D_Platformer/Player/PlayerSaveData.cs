@@ -1,3 +1,4 @@
+using System;
 using Scripts_2D_Platformer.Systems;
 using UnityEngine;
 
@@ -5,17 +6,31 @@ namespace Scripts_2D_Platformer.Player
 {
     public class PlayerSaveData : MonoBehaviour
     {
+        private Transform _collisionObject;
+        
         private void Start()
         {
-            GameEvents.current.ONSavePointCollisionEnter += OnSave;
-            GameEvents.current.OnSavePointCollisionLoad += OnLoad;
+            GameEvents.Current.ONSavePointCollisionEnter += OnSave;
+            GameEvents.Current.OnSavePointCollisionLoad += OnLoad;
         }
 
         private void OnSave()
         {
-            var position = transform.position;
-            PlayerPrefs.SetFloat("PlayerPosX", position.x);
-            PlayerPrefs.SetFloat("PlayerPosY", position.y);
+            if (_collisionObject == null)
+            {
+                print("Player Transform");
+                var position = transform.position;
+                PlayerPrefs.SetFloat("PlayerPosX", position.x);
+                PlayerPrefs.SetFloat("PlayerPosY", position.y);
+            }
+            else
+            {
+                print("Object Transform");
+                var position = _collisionObject.position;
+                PlayerPrefs.SetFloat("PlayerPosX", position.x);
+                PlayerPrefs.SetFloat("PlayerPosY", position.y);
+            }
+            
         }
 
         private void OnLoad()
@@ -27,8 +42,21 @@ namespace Scripts_2D_Platformer.Player
 
         private void OnDestroy()
         {
-            GameEvents.current.ONSavePointCollisionEnter -= OnSave;
-            GameEvents.current.OnSavePointCollisionLoad -= OnLoad;
+            GameEvents.Current.ONSavePointCollisionEnter -= OnSave;
+            GameEvents.Current.OnSavePointCollisionLoad -= OnLoad;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag("CheckPoint"))
+            {
+                _collisionObject = other.transform;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            _collisionObject = null;
         }
     }
 }

@@ -1,13 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Scripts_2D_Platformer.Systems;
 using UnityEngine;
 
-public class TriggerAreaSave : MonoBehaviour
+namespace Scripts_2D_Platformer.Systems
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public class TriggerAreaSave : MonoBehaviour
     {
-        GameEvents.current.SavePointCollision();
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            GameEvents.Current.SavePointCollision();
+        }
     }
 }
