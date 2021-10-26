@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Scripts_2D_Platformer.Player
 {
@@ -9,13 +10,13 @@ namespace Scripts_2D_Platformer.Player
         [SerializeField] private float jumpSpeed = 10f;
         
         /*JUMPING*/
-        private bool m_IsJumping = false;
-        private float m_JumpTimeCounter;
-        public float m_JumpTime = .4f;
+        private bool _isJumping;
+        private float _jumpTimeCounter;
+        [FormerlySerializedAs("m_JumpTime")] public float mJumpTime = .4f;
         
-        public void Move(Rigidbody2D rigidbody2D, Vector2 input)
+        public void Move(Rigidbody2D rigidBody2D, Vector2 input)
         {
-            rigidbody2D.velocity = new Vector2(input.x * moveSpeed, rigidbody2D.velocity.y);
+            rigidBody2D.velocity = new Vector2(input.x * moveSpeed, rigidBody2D.velocity.y);
         }
 
         public void Jump(bool isGrounded, Rigidbody2D rigidbody2D, bool jumpInput)
@@ -23,31 +24,31 @@ namespace Scripts_2D_Platformer.Player
             if (!jumpInput) return;
             if (!isGrounded) return;
         
-            m_IsJumping = true; //Long Jump
-            m_JumpTimeCounter = m_JumpTime; // Long Jump
+            _isJumping = true; //Long Jump
+            _jumpTimeCounter = mJumpTime; // Long Jump
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpSpeed);
         }
 
         public void LongJump(float longJump, Rigidbody2D rigidbody2D)
         {
             print("Tier 0");
-            if (longJump > 0f && m_IsJumping)
+            if (longJump > 0f && _isJumping)
             {
                 print("Tier 1");
-                if (m_JumpTimeCounter > 0)
+                if (_jumpTimeCounter > 0)
                 {
                     print("Tier 2");
                     rigidbody2D.velocity = Vector2.up * jumpSpeed;
-                    m_JumpTimeCounter -= Time.deltaTime;
+                    _jumpTimeCounter -= Time.deltaTime;
                 }
                 else
                 {
-                    m_IsJumping = false;
+                    _isJumping = false;
                 }
             }
             if (longJump <= 0f)
             {
-                m_IsJumping = false;
+                _isJumping = false;
             }
         }
     }
