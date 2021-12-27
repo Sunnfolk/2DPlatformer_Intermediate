@@ -35,3 +35,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Unity Project_2D_Platformer/Logs/shadercompiler-UnityShaderCompiler4.log
+*.log

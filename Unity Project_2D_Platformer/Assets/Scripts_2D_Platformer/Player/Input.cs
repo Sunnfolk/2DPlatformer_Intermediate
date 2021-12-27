@@ -6,36 +6,23 @@ namespace Scripts_2D_Platformer.Player
     {
         private CharacterInputMap _playerInput;
 
-        private Vector2 _moveAxis;
-        public Vector2 MoveAxis => _moveAxis;
+        public Vector2 MoveAxis { get; private set; }
 
-        public float Jumping => _jumping;
-        private float _jumping;
+        public float Jumping { get; private set; }
 
-        public bool Jump => _jump;
-        private bool _jump;
+        public bool Jump { get; private set; }
 
-        private void Awake()
-        {
-            _playerInput = new CharacterInputMap();
-        }
+        private void Awake() => _playerInput = new CharacterInputMap();
 
         private void Update()
         {
-            _moveAxis = _playerInput.Player.Move.ReadValue<Vector2>();
-            _jumping = _playerInput.Player.Jump.ReadValue<float>();
-            _jump = _playerInput.Player.Jump.triggered;
+            MoveAxis = _playerInput.Player.Move.ReadValue<Vector2>();
+            Jumping = _playerInput.Player.Jump.ReadValue<float>();
+            Jump = _playerInput.Player.Jump.triggered;
         }
 
+        private void OnEnable() => _playerInput.Enable();
 
-        private void OnEnable()
-        {
-            _playerInput.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _playerInput.Disable();
-        }
+        private void OnDisable() => _playerInput.Disable();
     }
 }
