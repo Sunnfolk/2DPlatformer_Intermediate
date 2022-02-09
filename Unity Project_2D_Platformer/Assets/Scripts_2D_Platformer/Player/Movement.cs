@@ -52,12 +52,4 @@ namespace Scripts_2D_Platformer.Player
             }
         }
     }
-    
-    public class Dash : Movement
-    {
-        public bool isDashing;
-    }
-    
-    
-    
 }
